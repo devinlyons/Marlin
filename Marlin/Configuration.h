@@ -59,6 +59,10 @@
   #define HotendAllMetal
 #endif
 
+																		  
+											  
+					
+
 // Enable this if you used a plug and play creality e3d or mosquito kit and kept the Creality thermistor
 //#define CrealityThermistor
 
@@ -165,6 +169,7 @@
 //#define SKR13 // 32 bit board - assumes 2208 drivers
 //#define SKR14
 //#define SKR14Turbo
+					
 //#define SKRPRO11
 //#define SKRE3Turbo
 //#define SKR_Switch_Extruder_1 // Switch pins in PINS file for SKRE3Turbo
@@ -178,6 +183,7 @@
 //#define SKR14_PowerLossKit // Bigtreetech power loss kit for SKR14
 
 //#define SKR_2209
+																   
 //#define SKR_2130
 //#define SKR_UART // Configure SKR board with drivers in UART mode or SPI for TMC2130
 //#define SKR_ReverseSteppers // Some users reported directions backwards than others on SKR with various drivers.
@@ -279,6 +285,7 @@
  *
  * Calibration Guides:  https://reprap.org/wiki/Calibration
  *                      https://reprap.org/wiki/Triffid_Hunter%27s_Calibration_Guide
+										 
  *                      https://sites.google.com/site/repraplogphase/calibration-of-your-reprap
  *                      https://youtu.be/wAL9d7FgInk
  *
@@ -289,9 +296,15 @@
 //===========================================================================
 //========================== DELTA / SCARA / TPARA ==========================
 //===========================================================================
+																										
+																									 
 //
 // Download configurations from the link above and customize for your machine.
+																			 
+																			 
+																			 
 // Examples are located in config/examples/delta, .../SCARA, and .../TPARA.
+																									 
 //
 //===========================================================================
 
@@ -331,6 +344,7 @@
 #endif
 
 #if ENABLED(CrealityTitan)
+					 
   #define E3DTitan
 #endif
 
@@ -519,6 +533,8 @@
   #if DISABLED(I2C_EEPROM)
     #define FLASH_EEPROM_EMULATION
   #endif
+									   
+								
 #endif
 
 #if ENABLED(E3DHemera)
@@ -605,8 +621,11 @@
  */
 #if ANY(MachineEnder3V2, CrealityViewerKit)
   #define BAUDRATE 115200
+			  
+						   
 #else
   #define BAUDRATE 250000
+		
 #endif
 
 // Enable the Bluetooth serial interface on AT90USB devices
@@ -620,6 +639,8 @@
     #define MOTHERBOARD BOARD_BTT_SKR_V1_4
   #elif ENABLED(SKR13)
     #define MOTHERBOARD BOARD_BTT_SKR_V1_3
+						   
+											  
   #elif ENABLED(SKRPRO11)
     #define MOTHERBOARD BOARD_BTT_SKR_PRO_V1_1
   #elif ENABLED(SKRMiniE3V2)
@@ -1071,6 +1092,7 @@
     #define DEFAULT_Kd_LIST { 114.00, 114.00 }
   #else
   // If you are using a pre-configured hotend then you can use one of the value sets by uncommenting it
+
     #if ANY(HotendMosquito, PID50W)
       #define DEFAULT_Kp 16.8
       #define DEFAULT_Ki 1.2
@@ -1107,15 +1129,38 @@
       #endif
     #elif ENABLED(HotendE3D)
       //E3D v6 Clone with 5050 fan wing at 100% set to 235
+							 
+							  
+								 
+							   
+							  
+							   
+								
       #define  DEFAULT_Kp 23.36
       #define  DEFAULT_Ki 1.99
       #define  DEFAULT_Kd 87.46
+		 
+							   
+							  
+							   
     #endif
+						  
+														
+							 
+							
+							 
+		
+	  
 
     // Ultimaker
     //#define DEFAULT_Kp 22.2
     //#define DEFAULT_Ki 1.08
     //#define DEFAULT_Kd 114
+
+			  
+						  
+						  
+						 
 
     // MakerGear
     //#define DEFAULT_Kp 7.0
@@ -1126,8 +1171,15 @@
     //#define DEFAULT_Kp 63.0
     //#define DEFAULT_Ki 2.25
     //#define DEFAULT_Kd 440
+											  
+											  
+	   
+							 
+							 
+							 
   #endif
 #endif // PIDTEMP
+  
 
 //===========================================================================
 //====================== PID > Bed Temperature Control ======================
@@ -1173,6 +1225,10 @@
     #define  DEFAULT_bedKp 690.34
     #define  DEFAULT_bedKi 111.47
     #define  DEFAULT_bedKd 1068.83
+	   
+								 
+								
+								 
   #endif
 
   // FIND YOUR OWN: "M303 E-1 C8 S90" to run autotune on the bed at 90 degreesC for 8 cycles.
@@ -1530,6 +1586,8 @@
   #define EStepsmm 140
 #elif ENABLED(MachineCR2020)
   #define EStepsmm 113
+								
+					  
 #else
   #define EStepsmm 95
 #endif
@@ -1622,6 +1680,9 @@
  *   M204 R    Retract Acceleration
  *   M204 T    Travel Acceleration
  */
+																								
+																			  
+																									   
 
 /**
  * Default Jerk limits (mm/s)
@@ -1686,7 +1747,9 @@
  * The probe replaces the Z-MIN endstop and is used for Z homing.
  * (Automatically enables USE_PROBE_FOR_Z_HOMING.)
  */
-#define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+#if DISABLED(SKR13,SKR14,SKR14Turbo,SKRPRO11,SKRMINIE320)
+  #define Z_MIN_PROBE_USES_Z_MIN_ENDSTOP_PIN
+#endif
 
 // Force the use of the probe for Z-axis homing
 #define USE_PROBE_FOR_Z_HOMING
@@ -1706,7 +1769,13 @@
  *      - normally-closed switches to GND and D32.
  *      - normally-open switches to 5V and D32.
  */
+										   
 //#define Z_MIN_PROBE_PIN 32 // Pin 32 is the RAMPS default
+						 
+							   
+						  
+							   
+	  
 
 /**
  * Probe Type
@@ -1830,7 +1899,17 @@
  * -  Probe Offsets can be tuned at runtime with 'M851', LCD menus, babystepping, etc.
  * -  PROBE_OFFSET_WIZARD (configuration_adv.h) can be used for setting the Z offset.
  *
+											  
+														  
+														  
+														  
+														  
+  
+				 
  *   #define NOZZLE_TO_PROBE_OFFSET { 10, 10, 0 }
+																   
+																   
+																   
  *
  *     +-- BACK ---+
  *     |           |
@@ -1890,7 +1969,11 @@
     #define NOZZLE_TO_PROBE_OFFSET { 45, 7, 0 }
   #endif
 #elif ENABLED(MicroswissDirectDrive) && ENABLED(ABL_BLTOUCH)
+						 
+														
+	   
   #define NOZZLE_TO_PROBE_OFFSET { -45, -5, 0 }
+		
 #elif (ENABLED(ABL_BLTOUCH) && ENABLED(HotendStock))
   #define NOZZLE_TO_PROBE_OFFSET { -41, -8, 0 }
 #elif ((ANY(ABL_EZABL, ABL_NCSW)) && ENABLED(HotendStock))
@@ -1914,6 +1997,8 @@
 
 // Most probes should stay away from the edges of the bed, but
 // with NOZZLE_AS_PROBE this can be negative for a wider probing area.
+					   
+						  
 #if ENABLED(ABL_BLTOUCH)
   #define PROBING_MARGIN 3
 #else
@@ -1925,6 +2010,7 @@
 
 // Feedrate (mm/min) for the first approach when double-probing (MULTIPLE_PROBING == 2)
 #define Z_PROBE_FEEDRATE_FAST (12*60)
+											
 
 // Feedrate (mm/min) for the "accurate" probe of each point
 #define Z_PROBE_FEEDRATE_SLOW (Z_PROBE_FEEDRATE_FAST / 2)
@@ -2063,7 +2149,7 @@
 // Invert the stepper direction. Change (or reverse the motor connector) if an axis goes the wrong way.
 
 
-#if(ANY(MachineEnder4, MachineEnder5))
+#if(ANY(MachineEnder4, MachineEnder5, MachineEnder5Plus))
   #define INVERT_X_DIR true
   #define INVERT_Y_DIR true
   #define INVERT_Z_DIR true
@@ -2077,10 +2163,11 @@
 #elif ANY(MachineCR10Orig, SKR13, SKR14, SKR14Turbo, SKRMiniE3V2, SKRE3Turbo) && DISABLED(SKR_ReverseSteppers)
   #define INVERT_X_DIR true
   #define INVERT_Y_DIR true
+									  
   #define INVERT_Z_DIR false
   #if(ENABLED(E3DTitan))
     #define INVERT_E0_DIR false
-    #define INVERT_E1_DIR true
+    #define INVERT_E1_DIR true			   
   #else
     #define INVERT_E0_DIR true
     #define INVERT_E1_DIR false
@@ -2184,17 +2271,34 @@
     #define Y_MAX_POS 225
     #define ClipClearance 15
   #elif ENABLED(MachineEnder5Plus)
+						   
     #define Y_BED_SIZE 360
+		 
+							
+		  
     #define Z_MAX_POS 400
     #if ENABLED(E3DHemera)
       #define X_BED_SIZE 352
       #define X_MAX_POS 352
     #else
+							 
       #define X_BED_SIZE 360
+							 
+		   
+							  
       #define X_MAX_POS 360
+			
     #endif
     #define Y_MAX_POS 360
+						   
+							 
+		 
+							 
+							   
+		   
     #define ClipClearance 25
+			
+		  
   #elif ENABLED(MachineCR20)
     #define X_BED_SIZE 230
     #define Y_BED_SIZE 230
@@ -2326,6 +2430,7 @@
  *
  * RAMPS-based boards use SERVO3_PIN for the first runout sensor.
  * For other boards you may need to define FIL_RUNOUT_PIN, FIL_RUNOUT2_PIN, etc.
+														 
  */
 #if (NONE(MachineCR10Orig, MachineCR20, MachineEnder3, MachineEnder3V2, MachineEnder4, MachineEnder5, MachineCRX, Melzi_To_SBoardUpgrade) || ANY(AddonFilSensor, lerdgeFilSensor, DualFilSensors  ))
   #define FILAMENT_RUNOUT_SENSOR
@@ -2464,6 +2569,7 @@
  * leveling immediately after G28.
  */
 #define RESTORE_LEVELING_AFTER_G28
+									
 //#define ENABLE_LEVELING_AFTER_G28
 
 /**
@@ -2527,8 +2633,12 @@
   #else
     #define GRID_MAX_POINTS_X 5
   #endif
+					  
+							 
 #elif ENABLED( MeshFine)
   #define GRID_MAX_POINTS_X 8
+						   
+							  
 #elif ENABLED(MeshExtreme)
   #define GRID_MAX_POINTS_X 15
 #else
@@ -2539,6 +2649,8 @@
 #if EITHER(AUTO_BED_LEVELING_LINEAR, AUTO_BED_LEVELING_BILINEAR)
 
   // Set the number of grid points per dimension.
+							   
+											   
 
   // Probe along the Y axis, advancing X after each column
   //#define PROBE_Y_FIRST
@@ -3079,6 +3191,16 @@
 #endif
 
 /**
+					 
+  
+																	 
+														
+   
+								  
+									 
+									
+
+   
  * SD CARD: ENABLE CRC
  *
  * Use CRC checks and retries on the SD communication.
@@ -3451,6 +3573,10 @@
 //
 //#define ENDER2_STOCKDISPLAY
 
+							  
+			
+	  
+
 //
 // ANET and Tronxy Graphical Controller
 //
@@ -3588,6 +3714,7 @@
 //
 #if ANY(MachineCR10SPro, MachineCRX, MachineEnder5Plus, MachineCR10Max) && (NONE(GraphicLCD, SKRMiniE3V2) || ANY(Force10SProDisplay, ForceCRXDisplay))
   #define EXTENSIBLE_UI
+						 
 #endif
 
 #if ENABLED(EXTENSIBLE_UI)
@@ -3600,8 +3727,21 @@
 
 /**
  * Specific TFT Model Presets. Enable one of the following options
+  
+						 
+				   
+																		
+										 
+													 
+				
+  
  * or enable TFT_GENERIC and set sub-options.
+						   
+																									 
+										 
+														
  */
+					 
 
 //
 // 480x320, 3.5", SPI Display From MKS
@@ -3796,6 +3936,9 @@
 // If all hotends, bed temperature, and target temperature are under 54C
 // then the BLUE led is on. Otherwise the RED led is on. (1C hysteresis)
 //#define TEMP_STAT_LEDS
+
+																				  
+					
 
 // Support for the BariCUDA Paste Extruder
 //#define BARICUDA
