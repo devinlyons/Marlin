@@ -2192,6 +2192,10 @@
     #define INVERT_E1_DIR true
   #endif
 #endif
+
+// -- CUSTOM --
+#undef INVERT_E0_DIR
+#define INVERT_E0_DIR false //remove inversion for direct drive
 // @section extruder
 
 // For direct drive extruder v9 set to true, for geared extruder set to false.
