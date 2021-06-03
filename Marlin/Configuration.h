@@ -2071,7 +2071,8 @@
     #define INVERT_E0_DIR false
     #define INVERT_E1_DIR true
   #else
-    #define INVERT_E0_DIR true
+    //#define INVERT_E0_DIR true
+    #define INVERT_E0_DIR false //E5P_Custom uses a direct drive created from a special mount
     #define INVERT_E1_DIR false
   #endif
 #elif ANY(MachineCR10Orig, SKR13, SKR14, SKR14Turbo, SKRMiniE3V2, SKRE3Turbo) && DISABLED(SKR_ReverseSteppers)
